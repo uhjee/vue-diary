@@ -1,6 +1,6 @@
-# report05
+# vue-diary project
 
-> A Vue.js project
+> A Vue.js 연습하며 다이어리를 만드는 중입니다.
 
 ## Build Setup
 
