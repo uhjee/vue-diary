@@ -1,7 +1,7 @@
 <template>
   <el-menu mode="horizontal" :default-active="activeIndex">
     <el-menu-item index="1">
-      <div @click="moveToList">Vue_diary_Heojeehaeng</div>
+      <div @click="moveToList">Vue_diary_uhjee</div>
     </el-menu-item>
     <el-menu-item class="info-login">
       <el-avatar class="margin-right-10">{{ id }}</el-avatar>

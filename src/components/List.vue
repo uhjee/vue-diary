@@ -18,7 +18,12 @@
         ></el-button>
       </el-button-group>
       <!-- 새로운 일기 쓰기 버튼 -->
-      <el-button icon="el-icon-edit" @click="moveToWrite" circle class="btn-color margin-right-10"></el-button>
+      <el-button
+        icon="el-icon-edit"
+        @click="moveToWrite"
+        circle
+        class="btn-color margin-right-10"
+      ></el-button>
       <!-- 정렬기준 select -->
       <el-select
         claass="input-sorting margin-right-10"
@@ -56,7 +61,7 @@
       <el-button size="mini" type="plian" @click="setInitial">초기화</el-button>
     </el-header>
     <!-- listmode가 timeline일 때 ------------------------------------------ -->
-    <el-main class="list-main" v-if="listmode== 'timeline'">
+    <el-main class="list-main" v-if="listmode == 'timeline'">
       <el-timeline>
         <el-timeline-item
           v-for="diary in diarylist"
@@ -93,15 +98,25 @@
                   ></el-button>
                 </el-popconfirm>
               </div>
-              <h4 class="timeline-card-title" @click="getDetail(diary.no)">{{diary.title}}</h4>
-              <p class="timeline-card-writeat">{{changeKoreanDetailDateFmt(diary.writeat)}} 작성</p>
+              <h4 class="timeline-card-title" @click="getDetail(diary.no)">
+                {{ diary.title }}
+              </h4>
+              <p class="timeline-card-writeat">
+                {{ changeKoreanDetailDateFmt(diary.writeat) }} 작성
+              </p>
             </div>
           </el-card>
         </el-timeline-item>
       </el-timeline>
       <!--'맨위로' 버튼:: scroll Y축이 150 내려갔을 경우, 맨위로 버튼 보이기 -->
       <div id="btn-to-top" v-show="windowTop > 150">
-        <button @click="moveToTop" class="btn btn-warning btn-sm" style="color: white">TOP</button>
+        <button
+          @click="moveToTop"
+          class="btn btn-warning btn-sm"
+          style="color: white"
+        >
+          TOP
+        </button>
       </div>
     </el-main>
 
@@ -142,19 +157,31 @@
                   ></el-button>
                 </el-popconfirm>
               </div>
-              <div class="card-card-writeat margin-bottom-10">{{changeKoreanDateFmt(diary.writeat)}}</div>
+              <div class="card-card-writeat margin-bottom-10">
+                {{ changeKoreanDateFmt(diary.writeat) }}
+              </div>
               <div
                 class="card-card-title margin-bottom-20"
                 @click="getDetail(diary.no)"
-              >{{diary.title}}</div>
-              <div class="card-card-content margin-left-20">{{diary.content}}</div>
+              >
+                {{ diary.title }}
+              </div>
+              <div class="card-card-content margin-left-20">
+                {{ diary.content }}
+              </div>
             </div>
           </div>
         </el-card>
       </div>
       <!--'맨위로' 버튼:: scroll Y축이 150 내려갔을 경우, 맨위로 버튼 보이기 -->
       <div id="btn-to-top" v-show="windowTop > 150">
-        <button @click="moveToTop" class="btn btn-warning btn-sm" style="color: white">TOP</button>
+        <button
+          @click="moveToTop"
+          class="btn btn-warning btn-sm"
+          style="color: white"
+        >
+          TOP
+        </button>
       </div>
     </el-main>
   </el-container>
@@ -163,7 +190,7 @@
 <script>
 import { mapGetters } from "vuex";
 // 날짜 관련 모듈 import
-import DateUtil from "../dateutil";
+import DateUtil from "@/util/dateutil";
 
 export default {
   name: "list",
@@ -186,8 +213,8 @@ export default {
         // default : 작성일자
         sortingField: "writeat",
         // 내림차순 -> false / 오름차순 -> true
-        soringOrder: false,
-      },
+        soringOrder: false
+      }
     };
   },
   //life cycle hook- mounted :: DOM 요소(scroll)에 이벤트 걸기 위해 사용
@@ -211,7 +238,7 @@ export default {
       // includes() 검색어 :: data의 keyword를 parameter로 사용
       // filter() 정렬 :: data의 sorting을 parameter로 사용
       return this.$store.state.diarylist
-        .filter((d) => d.title.includes(this.keyword))
+        .filter(d => d.title.includes(this.keyword))
         .sort((a, b) => {
           // data의 sorting 에 따른 분기처리..
           // TODO: 정리...
@@ -244,7 +271,7 @@ export default {
             }
           }
         });
-    },
+    }
   },
   methods: {
     // 'timeline' or 'card' 전환 메소드
@@ -263,24 +290,24 @@ export default {
         name: "detail",
         // params로 전달하면, 전달받는 컴포넌트 내부에서 props로 받을 수 있다.
         params: {
-          no: no,
-        },
+          no: no
+        }
       });
     },
     // 새로운 다이어리 추가하는 화면으로 라우팅
     moveToWrite() {
       this.$store.dispatch("changeFormMode", {
-        formmode: "write",
+        formmode: "write"
       });
       this.$router.push({
-        name: "write",
+        name: "write"
       });
     },
     deleteDiary(no) {
       this.$store.dispatch("deleteDiary", { no: no });
       this.$message({
         type: "info",
-        message: `${no}번 일기가 삭제되었어요.`,
+        message: `${no}번 일기가 삭제되었어요.`
       });
     },
     // 검색어 변경하는 메소드
@@ -316,10 +343,10 @@ export default {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: "smooth",
+        behavior: "smooth"
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

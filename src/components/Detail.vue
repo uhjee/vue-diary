@@ -74,7 +74,7 @@
 <script>
 import { mapState } from "vuex";
 // 날짜 관련 함수 만든 js
-import DateUtil from "../dateutil";
+import DateUtil from "@/util/dateutil";
 
 export default {
   name: "detail",
